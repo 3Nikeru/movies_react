@@ -19,8 +19,7 @@ const Popular = () =>{
     return(
         <> 
             <h2>Популярні фільми</h2>
-            {/* <Link to="/" style={{textAlign: "center", display: "block", marginRight: "10px" }}>Home</Link>
-            <Link to="/expenses" style={{textAlign: "center", display: "block" }}>Expenses</Link>*/}
+            
            <ThemeProvider theme={theme}>
                 <Box 
                     className='movies' 

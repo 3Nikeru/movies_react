@@ -1,4 +1,12 @@
 @import './default.scss';
+a{
+    background-color: $secondary-stroke !important;
+    color: aliceblue !important;
+    letter-spacing: 4px !important;
+    &:hover{
+        background-color: $secondary-hover !important;
+    }
+}
 
 .main{
     font-family: Comfortaa;
@@ -11,7 +19,7 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        height: 100%;
+        height: 73%;
     }
     .movies{
         img{
@@ -24,6 +32,39 @@
             -webkit-box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
             -moz-box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
             box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
+            width: 20px;
+            height: 20px;
+            font-weight: bold;
+        }
+    }
+}
+.search_main{
+    font-family: Comfortaa;
+    background-color: $secondary-color;
+    h1{
+        margin: $h1;
+        padding: 20px 0;
+    }
+    button{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 73%;
+    }
+    .movies{
+        img{
+            width: 180px;
+            height: 250px;
+            border-radius: 15%;
+            border: 3px solid aliceblue;
+        }
+        .vote{
+            -webkit-box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
+            -moz-box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
+            box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
+            width: 20px;
+            height: 20px;
+            font-weight: bold;
         }
     }
 }
