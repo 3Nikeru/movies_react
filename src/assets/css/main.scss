@@ -1,0 +1,29 @@
+@import './default.scss';
+
+.main{
+    font-family: Comfortaa;
+    background-color: $main-color;
+    h1{
+        margin: $h1;
+        padding: 20px 0;
+    }
+    button{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 100%;
+    }
+    .movies{
+        img{
+            width: 180px;
+            height: 250px;
+            border-radius: 15%;
+            border: 3px solid aliceblue;
+        }
+        .vote{
+            -webkit-box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
+            -moz-box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
+            box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
+        }
+    }
+}

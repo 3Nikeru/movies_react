@@ -1,0 +1,34 @@
+//Fonts
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../fonts/Comfortaa-Medium.ttf');
+}
+@font-face {
+    font-family: 'Comfortaa-Light';
+    src: url('../fonts/Comfortaa-Light.ttf');
+}
+@font-face {
+    font-family: 'Comfortaa-Bold';
+    src: url('../fonts/Comfortaa-Bold.ttf');
+}
+
+//Main Colors
+$main-color: #b3db8f;
+$secondary-color: #81d0f6;
+$search-color: #dabde8;
+
+//Hovers
+$main-hover: #a5d080;
+$secondary-hover: #75c8f0;
+$search-hover: #d5b4e4;
+
+//Strokes
+$main-stroke: #99c679;
+$secondary-stroke: #68bce4;
+$search-stroke: #c8a1db;
+
+//Margin
+$h1: 0;
+$p: 0;
+
+

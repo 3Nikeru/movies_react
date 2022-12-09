@@ -1,0 +1,9 @@
+@import './default.scss';
+
+form{
+    position: relative;
+    #search-helper-text{
+        position: absolute;
+        bottom: -25px;
+    }
+}
