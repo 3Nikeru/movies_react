@@ -1,8 +1,12 @@
 html, body{
-    color: #272727;
+    // color: #272727;
     font-family: 'Comfortaa';
 }
-
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 //Fonts
 @font-face {
     font-family: 'Comfortaa';

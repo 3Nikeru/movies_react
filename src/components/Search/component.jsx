@@ -1,48 +1,17 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { TextField, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { ThemeProvider } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { TextField, ThemeProvider } from '@mui/material';
+// import { styled } from '@mui/material/styles';
 import theme from '../../theme/useThem';
 import { useNavigate } from 'react-router-dom';
 
 import '../../assets/css/style.scss';
 
-export const CssTextField = styled(TextField)({
-    '.css-yzt7n2-MuiFormLabel-root-MuiInputLabel-root': {
-      color: '#99c679',
-    },
-    '.css-nulin2-MuiFormLabel-root-MuiInputLabel-root': {
-      color: '#99c679',
-    },
-    '.css-1jaafvk-MuiFormLabel-root-MuiInputLabel-root':{
-      color: '#99c679',
-    },
-    '& label.Mui-focused': {
-      color: '#99c679',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#99c679',
-    },
-    '& .MuiOutlinedInput-root': {
-      color: '#99c679 !important',
-      '& fieldset': {
-        borderColor: '#99c679',
-      },
-      '&:hover fieldset': {
-        borderColor: '#99c679',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#99c679',
-      },
-    },
-  });
+const Search = ({search_type}) =>{
 
-
-const Search = () =>{
     const navigate = useNavigate();
-
     const validationSchema = yup.object({
         search: yup
         .string('Enter your Search')
@@ -64,7 +33,7 @@ const Search = () =>{
       
         <ThemeProvider theme={theme}>
                 <form onSubmit={formik.handleSubmit}>
-                    <CssTextField 
+                    <TextField 
                         fullWidth
                         id="search" 
                         label="Що шукаеш?" 
@@ -74,10 +43,31 @@ const Search = () =>{
                         error={formik.touched.search && Boolean(formik.errors.search)}
                         helperText={formik.touched.search && formik.errors.search}
                         type="text"
+                        autoComplete='off'
                         name="search"
-                        sx={{marginTop: '20px'}}
+                        sx={{
+                          "& .MuiInputLabel-root": {
+                            color: `${search_type}`,
+                            "& > focused": {
+                              color: `${search_type}`,
+                              borderColor: `${search_type}`,
+                              outline: 'none'
+                            }
+                          },//styles the label
+                          "& .MuiOutlinedInput-notchedOutline": {
+                            color: `${search_type}`,
+                            outline: 'none',
+                          },
+                          "& .MuiOutlinedInput-root": {
+                            color: `${search_type}`,
+                            "& > fieldset": { 
+                              borderColor: `${search_type} !important`,
+                              color: `${search_type}`,
+                            }
+                          },
+                        }}
                         />
-                    <Button variant="contained" type="submit">
+                    <Button variant="contained" type="submit" sx={{backgroundColor: `${search_type}`}}>
                         <SearchOutlinedIcon/>
                     </Button>
                 </form>

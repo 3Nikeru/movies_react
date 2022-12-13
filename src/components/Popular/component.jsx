@@ -1,20 +1,28 @@
 import { Box } from "@mui/system";
-import { Skeleton } from "@mui/material";
+import { Skeleton, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import useMoviesData from "../../hooks/moviesData";
 import { generateImageUrl, convertDate } from "../utils";
 import { ThemeProvider } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import theme from "../../theme/useThem";
 
 
-const Popular = () =>{
+const Popular = ({popular_type}) =>{
     const {data} = useMoviesData('popular'); 
     const [post_data, setPost] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(()=>{
         setPost(data.results);
     }, [data.results]);
+
+    const handlerMovieDetails = (movieId) =>{
+        console.log(movieId);
+        navigate(`/movie/${movieId}`);
+    }
 
     return(
         <> 
@@ -23,6 +31,7 @@ const Popular = () =>{
            <ThemeProvider theme={theme}>
                 <Box 
                     className='movies' 
+                    backgroundColor={popular_type}
                     sx={{
                         display: 'flex', 
                         flexWrap: 'wrap',
@@ -30,23 +39,36 @@ const Popular = () =>{
                         }}>
                         {(post_data !== undefined) ? post_data.map(post => (
                         <Box 
-                            key={post.id} 
+                            className="post"
+                            key={post.id}
+                            backgroundColor={theme.palette.primary.dark} 
+                            onClick={() => {handlerMovieDetails(post.id)}}
                             sx={{
                                 width: '180px', 
                                 height: '352px', 
                                 position: 'relative',
                                 margin: '0 20px 20px',
+                                color: 'aliceblue',
+                                cursor: 'pointer'
                             }}>   
                             <img src={generateImageUrl(post.poster_path)} alt={post.original_title} />
-                           <h3> {post.original_title}</h3>
-                           <Box
-                            sx={{
-                                textAlign: 'center', 
-                            }}
-                           >{convertDate(post.release_date)}</Box>
+                            <Box>
+                                <Typography variant="h6" sx={{padding: '0 5px 0 5px', fontWeight: "bold"}}> {post.original_title}</Typography>
+                                <Box
+                                    color={theme.palette.primary.dark}
+                                    backgroundColor={popular_type}
+                                    sx={{
+                                        position: 'absolute',
+                                        bottom: '2px',
+                                        left: '0',
+                                        width: '100%',
+                                        padding: '5px 0',
+                                    }}
+                                >{convertDate(post.release_date)}</Box>
+                            </Box>
                            <Box 
                            className="vote"
-                           backgroundColor= {theme.palette.primary.light}
+                           backgroundColor= {theme.palette.primary.dark}
                            sx={{
                             position: 'absolute', 
                             top: '-10px', 

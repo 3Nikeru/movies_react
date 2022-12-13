@@ -1,6 +1,6 @@
 import {createTheme} from "@mui/material";
 
-const theme = createTheme({
+export const theme = createTheme({
     typography: {
         fontFamily: 'Comfortaa',
       },
@@ -21,17 +21,21 @@ const theme = createTheme({
     palette: {
       primary: {
         main: '#99c679',
-        dark: '#272727',
+        dark: '#000000',
         light: '#b3db8f',
       },
       secondary:{
         main: '#81d0f6',
-        dark: '#272727',
+        dark: '#000000',
         light: '#75c8f0',
+      },
+      detail:{
+        main: '#dabde8',
+        dark: '#000000',
+        light: '#d5b4e4',
       }
     }
   });
 
   export default theme;
-
 
