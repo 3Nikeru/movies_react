@@ -2,6 +2,7 @@
   "name": "movies_react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://3nikeru.github.io/movies_react",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
