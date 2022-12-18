@@ -10,7 +10,7 @@ const HomeLink = ({link_type}) =>{
     function Router(props) {
         const { children } = props;
         if (typeof window === 'undefined') {
-          return <StaticRouter location="/">{children}</StaticRouter>;
+          return <StaticRouter location="/movies_react">{children}</StaticRouter>;
         }
       
         return <MemoryRouter>{children}</MemoryRouter>;
@@ -23,7 +23,7 @@ const HomeLink = ({link_type}) =>{
         <ThemeProvider theme={theme}>
             <Button 
                 component={RouterLink} 
-                to="/"
+                to="/movies_react"
                 background={link_type}
                 sx={{
                     fontFamily: 'Comfortaa',

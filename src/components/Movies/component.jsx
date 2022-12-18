@@ -5,9 +5,9 @@ import MovieDetails from "../../routes/MovieDetails/component";
 import SearchResults from "../../routes/SearchResults/component";
 
 const Movies = () =>{
-   return(
+   return (
        <Routes>
-          <Route path="/" element={<Main/>}/>
+          <Route path="/movies_react" element={<Main/>}/>
           <Route 
           path="/search/:searchId"
           loader={({ params }) => {
