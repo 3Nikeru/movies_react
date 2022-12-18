@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/movies_react/static/css/main.49251cf1.css",
+    "main.js": "/movies_react/static/js/main.72d047b7.js",
+    "static/js/787.733f52d7.chunk.js": "/movies_react/static/js/787.733f52d7.chunk.js",
+    "static/media/Comfortaa-Medium.ttf": "/movies_react/static/media/Comfortaa-Medium.db5c74bd40268b35dc93.ttf",
+    "static/media/Comfortaa-Light.ttf": "/movies_react/static/media/Comfortaa-Light.2d79c8b673318d831c9b.ttf",
+    "static/media/Comfortaa-Bold.ttf": "/movies_react/static/media/Comfortaa-Bold.059cc3e0c5d00a88354f.ttf",
+    "index.html": "/movies_react/index.html",
+    "main.49251cf1.css.map": "/movies_react/static/css/main.49251cf1.css.map",
+    "main.72d047b7.js.map": "/movies_react/static/js/main.72d047b7.js.map",
+    "787.733f52d7.chunk.js.map": "/movies_react/static/js/787.733f52d7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.49251cf1.css",
+    "static/js/main.72d047b7.js"
+  ]
+}
