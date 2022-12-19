@@ -11,17 +11,14 @@ const Movies = () =>{
           <Route 
           path="/search/:searchId"
           loader={({ params }) => {
-            console.log(params.searchId); // "hotspur"
+            console.log(params.searchId);
           }}
-          // and the action
-          action={({ params }) => {}} 
           element={<SearchResults/>}/>
           <Route
           path="/movie/:movieId"
           loader={({params})=>{
             console.log(params.movieId)
           }}
-          action={({ params }) => {}} 
           element={<MovieDetails/>}/>
           <Route path="*" element={<Error/>} />
         </Routes>

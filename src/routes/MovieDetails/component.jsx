@@ -12,8 +12,11 @@ import useMoviesData from "../../hooks/moviesData"
 const MovieDetails = () =>{
     let params = useParams();
     const details = useMoviesData(params.movieId);
+    const translations = useMoviesData(`${params.movieId}/translations`)
     const movie_detail = details.data;
-    console.log(movie_detail)
+    const translation = translations.data.translations;
+    const translation_data = translation;
+
     return(
         <ThemeProvider theme={theme}>
             <Box className="main" backgroundColor={theme.palette.detail.main} fontFamily={theme.typography.fontFamily}>
@@ -32,6 +35,7 @@ const MovieDetails = () =>{
                         height="auto" 
                         sx={{zIndex: '1'}} 
                         alt={movie_detail.original_title} />
+                        
                         <Typography 
                             variant="h2" 
                             fontFamily={theme.typography.fontFamily} 
@@ -49,7 +53,18 @@ const MovieDetails = () =>{
                             width: '100%'}}>
                                 {convertDate(movie_detail.release_date)}
                         </Typography>
-                        <Typography paragraph={true} fontFamily={theme.typography.fontFamily} sx={{zIndex: '2', backgroundColor: '#00000094', color: 'aliceblue', padding: '15px', margin: 0, width: '100%'}}>{movie_detail.overview}</Typography>
+                        {(translation_data !== undefined) ? translation_data.filter(code => code.iso_3166_1.includes('UA')).map(filteredCode => ( 
+                        <Typography 
+                        key={filteredCode.data.overview.length}
+                        paragraph={true} 
+                        fontFamily={theme.typography.fontFamily}
+                        sx={{zIndex: '2', 
+                        backgroundColor: '#00000094', 
+                        color: 'aliceblue', 
+                        padding: '15px',
+                        margin: 0, 
+                        width: '100%'}}>{filteredCode.data.overview}</Typography>
+                        )) : <Skeleton variant="rectangular" width="100%" height={100}/> }
                         <Typography
                         variant="h3" 
                         sx={{
@@ -63,9 +78,9 @@ const MovieDetails = () =>{
                             backgroundColor: '#00000094'}}>
                                 {Math.round(movie_detail.vote_average)* 10}
                         </Typography>
-                        <Box>
+                        <Box sx={{padding: '20px 0'}}>
                         {(movie_detail.genres) ? movie_detail.genres.map(gener =>(
-                            <Chip key={gener.id} icon={<TagRoundedIcon />} label={gener.name} />
+                            <Chip key={gener.id} icon={<TagRoundedIcon />} sx={{marginRight: '10px'}} label={gener.name} />
                         )) : console.log('no geners')}
                         </Box>
                     </Box>
