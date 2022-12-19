@@ -46,10 +46,10 @@ const MovieDetails = () =>{
                                 {movie_detail.original_title}
                         </Typography>
                         <Typography
-                        variant="h6" 
+                        variant="h6"
+                        fontFamily={theme.typography.fontFamily} 
                         sx={{
-                            zIndex: '2', 
-                            bottom: '90px', 
+                            marginBottom: '10px',
                             width: '100%'}}>
                                 {convertDate(movie_detail.release_date)}
                         </Typography>
@@ -66,7 +66,9 @@ const MovieDetails = () =>{
                         width: '100%'}}>{filteredCode.data.overview}</Typography>
                         )) : <Skeleton variant="rectangular" width="100%" height={100}/> }
                         <Typography
-                        variant="h3" 
+                        className="detail_vote"
+                        variant="h3"
+                        fontFamily={theme.typography.fontFamily} 
                         sx={{
                             position: 'absolute', 
                             color: 'aliceblue', 

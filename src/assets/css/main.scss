@@ -2,9 +2,6 @@
 a{
     color: aliceblue !important;
     letter-spacing: 4px !important;
-    // &:hover{
-    //     background-color: $secondary-hover;
-    // }
 }
 .MuiButton-root:hover{
     background-color: rgba(25, 118, 210, 0.04) !important;
@@ -26,6 +23,7 @@ a{
         .post{
             border-top-left-radius: 35px;
             border-top-right-radius: 35px;
+            overflow: hidden;
             img{
                 width: 180px;
                 height: 250px;
@@ -41,33 +39,13 @@ a{
             }
         }
         }
-    }
-.search_main{
-    font-family: Comfortaa;
-    h1{
-        margin: $h1;
-        padding: 20px 0;
-    }
-    button{
-        position: absolute;
-        bottom: 0;
-        right: -1px;
-        height: 73%;
-    }
-    .movies{
-        img{
-            width: 180px;
-            height: 250px;
-            border-radius: 34px;
-            border: 3px solid black;
+    @media screen and  (max-width: 554px ){
+        .detail_vote{
+            padding: 20px;
+            font-size: inherit;
         }
-        .vote{
-            -webkit-box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
-            -moz-box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
-            box-shadow: 4px -1px 4px -2px rgb(0 0 0 / 77%);
-            width: 20px;
-            height: 20px;
-            font-weight: bold;
+        .app_title{
+            font-size: 3rem;
         }
     }
 }

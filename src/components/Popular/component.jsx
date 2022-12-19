@@ -82,25 +82,26 @@ const Popular = ({popular_type}) =>{
                             width: '100%', 
                             display: 'flex',
                             justifyContent: 'space-evenly',
+                            flexWrap: 'wrap',
                             height: '100vh'
                             }}>
-                           <Box>
+                           <Box mb={20}>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={250} sx={{marginBottom: '15px'}}/>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={30} />
                             </Box>
-                            <Box>
+                            <Box mb={20}>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={250} sx={{marginBottom: '15px'}}/>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={30} />
                             </Box>
-                            <Box>
+                            <Box mb={20}>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={250} sx={{marginBottom: '15px'}}/>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={30} />
                             </Box>
-                            <Box>
+                            <Box mb={20}>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={250} sx={{marginBottom: '15px'}}/>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={30} />
                             </Box>
-                            <Box>
+                            <Box mb={20}>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={250} sx={{marginBottom: '15px'}}/>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={30} />
                             </Box>
