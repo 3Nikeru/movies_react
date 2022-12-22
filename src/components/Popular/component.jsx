@@ -1,22 +1,24 @@
 import { Box } from "@mui/system";
 import { Skeleton, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useMoviesData from "../../hooks/moviesData";
 import { generateImageUrl, convertDate } from "../utils";
 import { ThemeProvider } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { getMovie } from "../../store/movie/actions";
 
 import theme from "../../theme/useThem";
 
 
-const Popular = ({popular_type}) =>{
-    const {data} = useMoviesData('popular'); 
-    const [post_data, setPost] = useState([]);
+const Popular = ({movies, getMovie, popular_type}) =>{
+    const data = useMoviesData('popular'); 
+    // const [movies, setPost] = useState([]);
 
     const navigate = useNavigate();
 
     useEffect(()=>{
-        setPost(data.results);
+        getMovie(data.results);
     }, [data.results]);
 
     const handlerMovieDetails = (movieId) =>{
@@ -37,7 +39,7 @@ const Popular = ({popular_type}) =>{
                         flexWrap: 'wrap',
                         justifyContent: 'space-evenly',
                         }}>
-                        {(post_data !== undefined) ? post_data.map(post => (
+                        {(movies !== undefined) ? movies.map(post => (
                         <Box 
                             className="post"
                             key={post.id}
@@ -113,4 +115,11 @@ const Popular = ({popular_type}) =>{
     )
 }
 
-export default Popular;
+const mapStateToProps = state =>({
+    movies: state.movies
+  })
+  const mapDispatchToProps = {
+    getMovie,
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Popular);

@@ -3,7 +3,6 @@ import * as yup from 'yup';
 import { Button } from '@mui/material';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { TextField, ThemeProvider } from '@mui/material';
-// import { styled } from '@mui/material/styles';
 import theme from '../../theme/useThem';
 import { useNavigate } from 'react-router-dom';
 
@@ -51,7 +50,7 @@ const Search = ({search_type}) =>{
                             "& > focused": {
                               color: `${search_type}`,
                               borderColor: `${search_type}`,
-                              outline: 'none'
+                              outline: 'none',
                             }
                           },//styles the label
                           "& .MuiOutlinedInput-notchedOutline": {

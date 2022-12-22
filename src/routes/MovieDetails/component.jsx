@@ -21,7 +21,7 @@ const MovieDetails = () =>{
         <ThemeProvider theme={theme}>
             <Box className="main" backgroundColor={theme.palette.detail.main} fontFamily={theme.typography.fontFamily}>
                 <Header color_type={theme.palette.detail.main} search_theme={theme.palette.detail.main}/>
-                <HomeLink link_type={theme.palette.detail.light}/>
+                <HomeLink link_type={theme.palette.detail.main}/>
                 <Box> 
                     {(movie_detail.length === 0 ) ?
                     <Box height="100vh">
