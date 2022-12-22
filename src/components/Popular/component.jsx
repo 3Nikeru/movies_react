@@ -1,24 +1,22 @@
 import { Box } from "@mui/system";
 import { Skeleton, Typography } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useMoviesData from "../../hooks/moviesData";
 import { generateImageUrl, convertDate } from "../utils";
 import { ThemeProvider } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { getMovie } from "../../store/movie/actions";
 
 import theme from "../../theme/useThem";
 
 
-const Popular = ({movies, getMovie, popular_type}) =>{
-    const data = useMoviesData('popular'); 
-    // const [movies, setPost] = useState([]);
+const Popular = ({popular_type}) =>{
+    const {data} = useMoviesData('popular'); 
+    const [post_data, setPost] = useState([]);
 
     const navigate = useNavigate();
 
     useEffect(()=>{
-        getMovie(data.results);
+        setPost(data.results);
     }, [data.results]);
 
     const handlerMovieDetails = (movieId) =>{
@@ -39,7 +37,7 @@ const Popular = ({movies, getMovie, popular_type}) =>{
                         flexWrap: 'wrap',
                         justifyContent: 'space-evenly',
                         }}>
-                        {(movies !== undefined) ? movies.map(post => (
+                        {(post_data !== undefined) ? post_data.map(post => (
                         <Box 
                             className="post"
                             key={post.id}
@@ -55,7 +53,7 @@ const Popular = ({movies, getMovie, popular_type}) =>{
                             }}>   
                             <img src={generateImageUrl(post.poster_path)} alt={post.original_title} />
                             <Box>
-                                <Typography variant="h6" sx={{padding: '0 5px 0 5px', fontWeight: "bold"}}> {post.original_title}</Typography>
+                               <Box sx={{width: '100%', fontSize: '90%'}}> <Typography variant="h6" sx={{padding: '0 5px 0 5px', fontWeight: "bold"}}> {post.original_title}</Typography></Box>
                                 <Box
                                     color={theme.palette.primary.dark}
                                     backgroundColor={popular_type}
@@ -84,26 +82,25 @@ const Popular = ({movies, getMovie, popular_type}) =>{
                             width: '100%', 
                             display: 'flex',
                             justifyContent: 'space-evenly',
-                            flexWrap: 'wrap',
                             height: '100vh'
                             }}>
-                           <Box mb={20}>
+                           <Box>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={250} sx={{marginBottom: '15px'}}/>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={30} />
                             </Box>
-                            <Box mb={20}>
+                            <Box>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={250} sx={{marginBottom: '15px'}}/>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={30} />
                             </Box>
-                            <Box mb={20}>
+                            <Box>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={250} sx={{marginBottom: '15px'}}/>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={30} />
                             </Box>
-                            <Box mb={20}>
+                            <Box>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={250} sx={{marginBottom: '15px'}}/>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={30} />
                             </Box>
-                            <Box mb={20}>
+                            <Box>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={250} sx={{marginBottom: '15px'}}/>
                                 <Skeleton variant="rounded" animation="wave" width={180} height={30} />
                             </Box>
@@ -115,11 +112,4 @@ const Popular = ({movies, getMovie, popular_type}) =>{
     )
 }
 
-const mapStateToProps = state =>({
-    movies: state.movies
-  })
-  const mapDispatchToProps = {
-    getMovie,
-  }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Popular);
+export default Popular;
