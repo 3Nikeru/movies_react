@@ -87,7 +87,7 @@ const SearchResults = ({search, foundMovie}) =>{
                                             cursor: 'pointer'
                                         }}>   
                                         <img src={generateImageUrl(post.poster_path)} alt={post.original_title} />
-                                        <Typography variant="h6" sx={{padding: '0 5px 0 5px', fontWeight: "bold"}} color="aliceblue"> {post.original_title}</Typography>
+                                        <Box sx={{width: '100%', fontSize: '90%'}}><Typography variant="h6" sx={{padding: '0 5px 0 5px', fontWeight: "bold", fontSize: '100%'}} fontFamily="Comfortaa" color="aliceblue"> {post.original_title}</Typography></Box>
                                         <Box
                                             backgroundColor={theme.palette.secondary.main}
                                             sx={{

@@ -47,7 +47,7 @@ const Popular = ({popular_type, popular, setPopular}) =>{
                             }}>   
                             <img src={generateImageUrl(post.poster_path)} alt={post.original_title} />
                             <Box>
-                               <Box sx={{width: '100%', fontSize: '90%'}}> <Typography variant="h6" sx={{padding: '0 5px 0 5px', fontWeight: "bold"}}> {post.original_title}</Typography></Box>
+                               <Box sx={{width: '100%', fontSize: '90%'}}> <Typography variant="h6" sx={{padding: '0 5px 0 5px', fontWeight: "bold", fontSize: '100%'}} fontFamily="Comfortaa"> {post.original_title}</Typography></Box>
                                 <Box
                                     color={theme.palette.primary.dark}
                                     backgroundColor={popular_type}
