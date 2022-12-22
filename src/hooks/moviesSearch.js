@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { generateSearchUrl } from "../components/utils";
 
 
-let useMoviesSearch = (path) =>{
+let useMoviesSearch = (path, action) =>{
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(()=>{
         fetch(generateSearchUrl(path))
         .then(res => res.json())
-        .then(setData)
+        .then(action || setData)
         .catch(setError)
     }, [path])
 

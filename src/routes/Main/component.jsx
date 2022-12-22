@@ -1,4 +1,3 @@
-// import {Link} from 'react-router-dom';
 import { Box } from '@mui/system';
 import Container from '@mui/material/Container';
 import '../../assets/css/style.scss'

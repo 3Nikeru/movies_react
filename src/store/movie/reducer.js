@@ -1,14 +1,28 @@
-import { GET_MOVIE } from "./types";
+import { FOUND_MOVIE, SET_DETAILS, SET_POPULAR } from "./types";
 
-const initialState = [];
+const initialState = {
+    popular: [],
+    search: [],
+    details: {}
+};
 
 const movies = (state = initialState, action)=>{
     switch(action.type){
-        case GET_MOVIE:
-            return [
+        case SET_POPULAR:
+            return {
                 ...state,
-                action.payload
-            ];
+                popular: action.payload,
+            };
+        case FOUND_MOVIE:
+            return {
+                ...state,
+                search: action.payload
+            };
+        case SET_DETAILS:
+                return {
+                    ...state,
+                    details: action.payload
+            };
         default:
             return state;
     }

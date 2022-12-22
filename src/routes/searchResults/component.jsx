@@ -8,15 +8,15 @@ import Header from "../../components/Header";
 import { generateImageUrl, convertDate } from "../../components/utils";
 import Popular from "../../components/Popular";
 import HomeLink from "../../components/HomeLink";
+import { connect } from "react-redux";
+import { selectFound } from "../../store/movie/selector";
+import { foundMovie } from "../../store/movie/actions";
 
-const SearchResults = () =>{
+const SearchResults = ({search, foundMovie}) =>{
     let params = useParams();
-    const found = useMoviesSearch(params.searchId);
-    console.log(found.data.results);
-    const found_post = found.data.results;
+    useMoviesSearch(params.searchId, foundMovie);
     const navigate = useNavigate();
     const handlerMovieDetails = (movieId) =>{
-        console.log(movieId);
         navigate(`/movie/${movieId}`);
     }
 
@@ -37,7 +37,7 @@ const SearchResults = () =>{
                         marginTop: '30px'
                         }}>
                         {(() => {
-                            if(found_post === undefined){
+                            if(search === undefined){
                                 return(
                                     <Box sx={{ 
                                         width: '100%', 
@@ -67,13 +67,13 @@ const SearchResults = () =>{
                                         </Box>
                                     </Box>
                                 )
-                            } else if (found_post.length === 0){
+                            } else if (search.length === 0){
                                 return (
                                     <Typography variant="h3">Ми не знайшли жодного фільму, спробуйте пошукати по іншим словам</Typography>
                                 )
                             } else {
                                 return (
-                                    found_post.map(post => (
+                                    search.map(post => (
                                     <Box 
                                         className="post"
                                         key={post.id} 
@@ -122,5 +122,13 @@ const SearchResults = () =>{
     )
 }
 
-export default SearchResults;
+const mapStateToProps = state => ({
+    search: selectFound(state),
+});
+
+const mapDispatchToProps = {
+    foundMovie,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
 
