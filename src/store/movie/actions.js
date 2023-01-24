@@ -1,4 +1,4 @@
-import { SET_POPULAR, FOUND_MOVIE, SET_DETAILS } from "./types";
+import { SET_POPULAR, FOUND_MOVIE, SET_DETAILS, SET_VIDEO, SET_ACTOR } from "./types";
 
 export const setPopular = (payload) =>{
     return {
@@ -15,6 +15,18 @@ export const foundMovie = (payload) =>{
 export const setDetails = (payload) =>{
     return {
         type: SET_DETAILS,
+        payload
+    }
+}
+export const setVideo = (payload) =>{
+    return {
+        type: SET_VIDEO,
+        payload
+    }
+}
+export const setActor = (payload) =>{
+    return {
+        type: SET_ACTOR,
         payload
     }
 }

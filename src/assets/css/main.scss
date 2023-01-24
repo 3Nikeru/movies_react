@@ -13,7 +13,7 @@ a{
         margin: $h1;
         padding: 20px 0;
     }
-    button{
+    .search_button{
         position: absolute;
         bottom: 0;
         right: -1px;
@@ -37,7 +37,87 @@ a{
                 font-weight: bold;
             }
         }
+    }
+    .trailler_container{
+        position: relative;
+        height: 100%;
+        min-height: 100vh;
+        iframe{
+            height: 100%;
+            width: 100%;    
+            left: 0;
+            top: 0;
+            border: none;
+            position: absolute;
         }
+        @media screen and (max-width: 912px){
+            min-height: 40vh;
+        }
+    }
+    .card_container{
+        padding: 20px 20px;
+        position: relative;
+        .carousel{
+        .rec.rec-arrow{
+            box-shadow: none;
+        }
+        .rec.rec-arrow:hover{
+            background-color: rgba(103,58,183,0.1);
+        }
+        .rec.rec-arrow:focus:enabled{
+            background-color: rgba(103,58,183,0.1);
+        }
+        .rec.rec-arrow:disabled {
+            visibility: hidden;
+        }
+        .actor_card{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 250px;
+        width: 100%;
+        color: #fff;
+        margin: 0 15px;
+        background-color: #00000094;
+        border-radius: 5%;
+        font-size: 16px;
+        p{
+            font-family: Comfortaa;
+            text-align: left;
+            margin-right: 10px;
+        }
+        img{
+            width: 70%;
+            height: 100%;
+            border-radius: 5%;
+            margin-right: 10px;
+        }
+        }
+        @media screen and (max-width: 709px){
+            .actor_card{
+                width: 64%;
+            }
+        }
+        @media screen and (max-width: 632px){
+            .actor_card{
+                width: 80% !important;
+            }
+        }
+        @media screen and (max-width: 626px){
+            .rec.rec-arrow{
+                display: none;
+            }
+        }
+        @media screen and (max-width: 416px){
+            .actor_card{
+                width: 100% !important;
+            }
+        }
+        }
+        @media screen and (max-width: 416px){
+            padding: 20px 0;
+        }
+    }
     @media screen and  (max-width: 554px ){
         .detail_vote{
             padding: 20px;

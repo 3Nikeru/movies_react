@@ -11,7 +11,7 @@ let useMoviesData = (path, action) =>{
         .then(res => res.json())
         .then(action || setData)
         .catch(setError)
-    }, [path])
+    }, [path, action])
 
     return {
         data,

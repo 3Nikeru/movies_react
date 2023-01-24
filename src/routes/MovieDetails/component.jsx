@@ -1,23 +1,41 @@
 import { useParams } from "react-router-dom"
 import { Box, Chip, Skeleton, Typography } from "@mui/material"
+import Carousel from "react-elastic-carousel"
+import Iframe from "react-iframe"
 import { ThemeProvider } from "styled-components"
 import Header from "../../components/Header"
 import HomeLink from "../../components/HomeLink"
-import { convertDate, generateImageUrl } from "../../components/utils"
-import TagRoundedIcon from '@mui/icons-material/TagRounded';
-import { selectDetails } from "../../store/movie/selector"
-import { setDetails } from "../../store/movie/actions"
+import { convertDate, generateImageUrl, generateVideoUrl } from "../../components/utils"
+import TagRoundedIcon from '@mui/icons-material/TagRounded'
+import { selectDetails, selectVideo, selectActor } from "../../store/movie/selector"
+import { setDetails, setVideo, setActor } from "../../store/movie/actions"
 
 import theme from "../../theme/useThem"
 import useMoviesData from "../../hooks/moviesData"
+import useMoviesVideo from "../../hooks/moviesVideo"
+import useMovieActors from "../../hooks/movieActors"
 import { connect } from "react-redux"
 
-const MovieDetails = ({details, setDetails}) =>{
+
+const MovieDetails = ({details, setDetails, video, setVideo, actor, setActor}) =>{
     let params = useParams();
+
     useMoviesData(params.movieId, setDetails);
+    useMoviesVideo(params.movieId, setVideo);
+    useMovieActors(params.movieId, setActor);
+
     const translations = useMoviesData(`${params.movieId}/translations`)
     const translation = translations.data.translations;
     const translation_data = translation;
+
+    const breakPoints = [
+        { width: 1, itemsToShow: 1 },
+        { width: 550, itemsToShow: 2, itemsToScroll: 2, pagination: false },
+        { width: 850, itemsToShow: 3 },
+        { width: 1150, itemsToShow: 4, itemsToScroll: 2 },
+        { width: 1450, itemsToShow: 5 },
+        { width: 1750, itemsToShow: 6 },
+    ];
 
     return(
         <ThemeProvider theme={theme}>
@@ -31,13 +49,14 @@ const MovieDetails = ({details, setDetails}) =>{
                     </Box>
                     :
                     <Box sx={{position: 'relative'}}>
-                        <img 
-                        src={generateImageUrl(details.backdrop_path)} 
-                        width="100%" 
-                        height="auto" 
-                        sx={{zIndex: '1'}} 
-                        alt={details.original_title} />
-                        
+                        {(video === undefined || video.length === 0) 
+                         ? 
+                            <Skeleton variant="rectangular" width="100%" height={200} /> 
+                         :
+                            <Box className="trailler_container">
+                                <Iframe className="trailler" url={generateVideoUrl(video[0].key)} id={video[0].id}/>
+                            </Box>
+                        } 
                         <Typography 
                             variant="h2" 
                             fontFamily={theme.typography.fontFamily} 
@@ -65,6 +84,7 @@ const MovieDetails = ({details, setDetails}) =>{
                         color: 'aliceblue', 
                         padding: '15px',
                         margin: 0, 
+                        textAlign: 'justify',
                         width: '100%'}}>{filteredCode.data.overview}</Typography>
                         )) : <Skeleton variant="rectangular" width="100%" height={100}/> }
                         <Typography
@@ -75,16 +95,31 @@ const MovieDetails = ({details, setDetails}) =>{
                             position: 'absolute', 
                             color: 'aliceblue', 
                             zIndex: '2', 
-                            top: '20px', 
+                            top: '120px', 
                             right: '20px', 
                             padding: '50px', 
                             borderRadius: '100%', 
                             backgroundColor: '#00000094'}}>
                                 {Math.round(details.vote_average)* 10}
                         </Typography>
+                        <Box className="card_container">
+                            <Carousel className="carousel" breakPoints={breakPoints} pagination={false}>
+                                {(actor !== undefined && actor.length !== 0 ) ? actor.map(cast => (
+                                    <Box className="actor_card" key={cast.cast_id}>
+                                        <img src={generateImageUrl(cast.profile_path)} alt={cast.name} />
+                                       <Box>
+                                            <Typography color={theme.palette.detail.main}>Actor:</Typography>
+                                            <Typography>{cast.name}</Typography>
+                                            <Typography color={theme.palette.detail.main}>Character:</Typography>
+                                            <Typography>{cast.character}</Typography>
+                                       </Box>
+                                    </Box>
+                                )) : <Skeleton variant="rectangular" width="100%" height={200} /> }
+                            </Carousel>
+                        </Box>
                         <Box sx={{padding: '20px 0'}}>
                         {(details.genres) ? details.genres.map(gener =>(
-                            <Chip key={gener.id} icon={<TagRoundedIcon />} sx={{marginRight: '10px'}} label={gener.name} />
+                            <Chip key={gener.id} icon={<TagRoundedIcon />} sx={{margin: "10px 5px 0 5px"}} label={gener.name} />
                         )) : console.log('loading')}
                         </Box>
                     </Box>
@@ -97,9 +132,13 @@ const MovieDetails = ({details, setDetails}) =>{
 }
 const mapStateToProps = state => ({
     details: selectDetails(state),
+    video: selectVideo(state),
+    actor: selectActor(state),
 });
 
 const mapDispatchToProps = {
     setDetails,
+    setVideo,
+    setActor,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails)

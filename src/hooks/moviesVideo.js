@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { generateSearchUrl } from "../components/utils";
+import { generateVideoApi } from "../components/utils";
 
 
-let useMoviesSearch = (path, action) =>{
+let useMoviesVideo = (path, action) =>{
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(()=>{
-        fetch(generateSearchUrl(path))
+        fetch(generateVideoApi(path))
         .then(res => res.json())
         .then(action || setData)
         .catch(setError)
@@ -19,4 +19,4 @@ let useMoviesSearch = (path, action) =>{
     }
 }
 
-export default useMoviesSearch;
+export default useMoviesVideo;

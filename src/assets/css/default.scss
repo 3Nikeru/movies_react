@@ -1,12 +1,29 @@
 html, body{
     font-family: 'Comfortaa';
     background-color: #000000;
+    position: relative;
 }
+body::-webkit-scrollbar {
+    width: 8px;
+  }
+   
+  body::-webkit-scrollbar-track {
+    background-color: none;
+    color: transparent;
+    display: none;
+  }
+   
+  body::-webkit-scrollbar-thumb {
+    background-color: rgba(240, 248, 255, 0.485);
+    border-radius: 0.5rem;
+    // outline: 1px solid slategrey;
+  }
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
 //Fonts
 @font-face {
     font-family: 'Comfortaa';

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { generateSearchUrl } from "../components/utils";
+import { generateActors } from "../components/utils";
 
-
-let useMoviesSearch = (path, action) =>{
+let useMovieActors = (path, action) =>{
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(()=>{
-        fetch(generateSearchUrl(path))
+        fetch(generateActors(path))
         .then(res => res.json())
         .then(action || setData)
         .catch(setError)
@@ -19,4 +18,4 @@ let useMoviesSearch = (path, action) =>{
     }
 }
 
-export default useMoviesSearch;
+export default useMovieActors;

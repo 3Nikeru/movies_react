@@ -66,7 +66,7 @@ const Search = ({search_type}) =>{
                           },
                         }}
                         />
-                    <Button variant="contained" type="submit" sx={{backgroundColor: `${search_type}`}}>
+                    <Button className="search_button" variant="contained" type="submit" sx={{backgroundColor: `${search_type}`}}>
                         <SearchOutlinedIcon/>
                     </Button>
                 </form>
