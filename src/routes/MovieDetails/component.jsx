@@ -8,26 +8,36 @@ import HomeLink from "../../components/HomeLink"
 import { convertDate, generateImageUrl, generateVideoUrl } from "../../components/utils"
 import TagRoundedIcon from '@mui/icons-material/TagRounded'
 import { selectDetails, selectVideo, selectActor } from "../../store/movie/selector"
-import { setDetails, setVideo, setActor } from "../../store/movie/actions"
+import { setDetails, setActor, setVideo } from "../../store/movie/actions"
 
 import theme from "../../theme/useThem"
 import useMoviesData from "../../hooks/moviesData"
 import useMoviesVideo from "../../hooks/moviesVideo"
 import useMovieActors from "../../hooks/movieActors"
 import { connect } from "react-redux"
+import { useState } from "react"
+import { useEffect } from "react"
 
 
 const MovieDetails = ({details, setDetails, video, setVideo, actor, setActor}) =>{
     let params = useParams();
 
+    const [trailer, setTrailer] = useState([]);
+
     useMoviesData(params.movieId, setDetails);
-    useMoviesVideo(params.movieId, setVideo);
     useMovieActors(params.movieId, setActor);
+    useMoviesVideo(params.movieId, setVideo);
 
     const translations = useMoviesData(`${params.movieId}/translations`)
     const translation = translations.data.translations;
     const translation_data = translation;
 
+    useEffect(()=>{
+        if(video !== undefined){
+           const filtered = video.filter(trailer => trailer.type === "Trailer");
+           setTrailer(filtered)
+        }
+    }, [video])   
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
         { width: 550, itemsToShow: 2, itemsToScroll: 2, pagination: false },
@@ -49,13 +59,16 @@ const MovieDetails = ({details, setDetails, video, setVideo, actor, setActor}) =
                     </Box>
                     :
                     <Box sx={{position: 'relative'}}>
-                        {(video === undefined || video.length === 0) 
-                         ? 
-                            <Skeleton variant="rectangular" width="100%" height={200} /> 
-                         :
-                            <Box className="trailler_container">
-                                <Iframe className="trailler" url={generateVideoUrl(video[0].key)} id={video[0].id}/>
-                            </Box>
+                        {(trailer === undefined || trailer.length === 0) 
+                        ? 
+                        <Typography 
+                            variant="h4" 
+                            fontFamily={theme.typography.fontFamily} 
+                            sx={{padding: '20px'}}>Нажаль, до цього фільму ми не знайшли трейлера</Typography>
+                        :
+                        <Box className="trailler_container">
+                            <Iframe className="trailler" url={generateVideoUrl(trailer[0].key)} id={trailer[0].id}/>
+                        </Box> 
                         } 
                         <Typography 
                             variant="h2" 
@@ -95,7 +108,7 @@ const MovieDetails = ({details, setDetails, video, setVideo, actor, setActor}) =
                             position: 'absolute', 
                             color: 'aliceblue', 
                             zIndex: '2', 
-                            top: '120px', 
+                            top: '80px', 
                             right: '20px', 
                             padding: '50px', 
                             borderRadius: '100%', 
@@ -106,7 +119,10 @@ const MovieDetails = ({details, setDetails, video, setVideo, actor, setActor}) =
                             <Carousel className="carousel" breakPoints={breakPoints} pagination={false}>
                                 {(actor !== undefined && actor.length !== 0 ) ? actor.map(cast => (
                                     <Box className="actor_card" key={cast.cast_id}>
-                                        <img src={generateImageUrl(cast.profile_path)} alt={cast.name} />
+                                        {
+                                        (cast.profile_path === null) ? <Box display="none"></Box>
+                                        : <img src={generateImageUrl(cast.profile_path)} alt={cast.name} /> 
+                                        }
                                        <Box>
                                             <Typography color={theme.palette.detail.main}>Actor:</Typography>
                                             <Typography>{cast.name}</Typography>
