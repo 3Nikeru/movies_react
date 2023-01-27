@@ -72,7 +72,6 @@ a{
         }
         .actor_card{
         display: flex;
-        justify-content: center;
         align-items: center;
         height: 250px;
         width: 100%;
@@ -87,7 +86,7 @@ a{
             margin-right: 10px;
         }
         img{
-            width: 70%;
+            width: 50%;
             height: 100%;
             border-radius: 5%;
             margin-right: 10px;
